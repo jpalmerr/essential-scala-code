@@ -4,6 +4,46 @@ package part2
 
 // Write a definition for IntList here!
 
+sealed trait IntList {
+
+  def contains(num: Int): Boolean = this match {
+    case IntNil() => false
+    case IntPair(head, tail) =>
+      ((head == num) || tail.contains(num))
+  }
+
+  def addToEach(num: Int): IntList = this match {
+    case IntNil() => IntNil()
+    case IntPair(head, tail) =>
+      val newHead: Int = head + num
+      val newTail: IntList = tail.addToEach(num)
+      IntPair(newHead, newTail)
+  }
+
+  def total: Int = this match {
+    case IntNil() => 0
+    case IntPair(head, tail) => head + tail.total
+  }
+
+  def append(that: IntList): IntList = this match {
+    case IntNil() => that
+    case IntPair(head, tail) => IntPair(head, tail.append(that))
+  }
+
+
+  def evensOnly: IntList = this match {
+    case IntNil() => IntNil()
+    case IntPair(head, tail) =>
+      if (head % 2 == 0 ) IntPair(head, tail.evensOnly) else tail.evensOnly
+  }
+
+}
+
+case class IntNil() extends IntList
+case class IntPair(head: Int, tail: IntList) extends IntList
+
+
+
 // Implement the following methods on IntList:
 // - def contains(num: Int): Boolean
 //   Does the list contain `num`?
@@ -23,19 +63,19 @@ package part2
 // ----------------------------------------------
 
 object Exercise11IntList {
-  // val numbers = IntPair(1, IntPair(2, IntPair(3, IntNil())))
+   val numbers = IntPair(1, IntPair(2, IntPair(3, IntNil())))
 
   def main(args: Array[String]): Unit = {
     println("contains")
-    // println(numbers.contains(1))
-    // println(numbers.contains(5))
+     println(numbers.contains(1))
+     println(numbers.contains(5))
 
     println("addToEach")
-    // println(numbers.addToEach(1))
-    // println(numbers.addToEach(5))
+     println(numbers.addToEach(1))
+     println(numbers.addToEach(5))
 
     println("total")
-    // println(numbers.total)
+     println(numbers.total)
 
     println("append")
     // println(numbers.append(numbers))
