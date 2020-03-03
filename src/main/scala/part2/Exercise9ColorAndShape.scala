@@ -17,7 +17,7 @@ Sealed -- not only are circle and rectangles shapes, they are the only shapes
  */
 
 // structural recursion
-object Canvas {
+object Drawing {
   def draw(shape: Shape): Unit = {
     shape match {
       case Circle(radius, color) => ???
