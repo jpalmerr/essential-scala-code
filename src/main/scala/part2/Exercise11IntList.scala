@@ -9,7 +9,7 @@ sealed trait IntList {
   def contains(num: Int): Boolean = this match {
     case IntNil() => false
     case IntPair(head, tail) =>
-      ((head == num) || tail.contains(num))
+      (head == num) || tail.contains(num)
   }
 
   def addToEach(num: Int): IntList = this match {
