@@ -20,9 +20,13 @@ object Exercise16bOptionFoldAndMap {
   }
 
   def namesOfFilmsByDirectorWithLastName(directors: List[Director], lastName: String): List[String] = {
-    val listOfDirectorsWithLastName: List[Director] = directorWithLastName(directors, lastName).toList
-    val listOfFilmsByDirector: List[Film] = listOfDirectorsWithLastName.flatMap(_.films)
-    listOfFilmsByDirector.map(_.name)
+//    val listOfDirectorsWithLastName: List[Director] = directorWithLastName(directors, lastName).toList
+//    val listOfFilmsByDirector: List[Film] = listOfDirectorsWithLastName.flatMap(_.films)
+//    listOfFilmsByDirector.map(_.name)
+
+    directorWithLastName(directors, lastName)
+      .fold(List.empty[Film])(_.films)
+      .map(_.name)
   }
 
   def main(args: Array[String]): Unit = {
