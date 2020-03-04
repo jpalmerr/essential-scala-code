@@ -41,6 +41,9 @@ sealed trait IntList {
 
 case class IntNil() extends IntList
 case class IntPair(head: Int, tail: IntList) extends IntList
+/* should be an object however when we use generics -- object can't be generic => variance comes in to get around it
+      which we will come to...
+ */
 
 
 

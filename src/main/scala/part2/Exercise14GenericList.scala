@@ -27,17 +27,20 @@ sealed trait MyList[A] {
     }
   }
 
-  def filter[A](predicate: A => Boolean): MyList[A] = {
-    this match {
-      case MyPair(head, tail) =>
-      if (predicate(head)) MyPair(head, tail.filter(predicate)) else tail.filter(predicate)
-      case MyNil() => MyNil()
-    }
-  }
+//  def filter[A](predicate: A => Boolean): MyList[A] = {
+//    this match {
+//      case MyPair(head, tail) =>
+//      if (predicate(head)) MyPair(head, tail.filter(predicate)) else tail.filter(predicate)
+//      case MyNil() => MyNil()
+//    }
+//  }
 }
 
 case class MyPair[A](head: A, tail: MyList[A] ) extends MyList[A]
-case class MyNil[A]() extends MyList[A]
+case class MyNil[A]() extends MyList[A] // object can't be generic
+
+// case object MyNil extends MyList[Nothing] // as Nothing is a subtype of anything
+
 
 // Step 2. Implement the following methods
 // using methods from IntList as templates:
@@ -73,6 +76,10 @@ object Exercise14GenericList {
     val numbers: MyList[Int] =
       MyPair(1, MyPair(3, MyPair(5, MyNil())))
 
+    val numbers2: List[Int] = List(1, 3, 5)
+    val numbers3: List[Int] = 1 :: 3 :: 5 :: Nil
+    val numbers4: List[Int] = 1 +: 3 +: 5 +: Nil
+
      val strings: MyList[String] =
        MyPair("foo", MyPair("bar", MyPair("baz", MyNil())))
 
@@ -86,14 +93,14 @@ object Exercise14GenericList {
              MyNil())))
 
     println("exists")
-    // println(numbers.exists(n => n > 1))
-    // println(strings.exists(s => s.startsWith("b")))
-    // println(shapes.exists(s => s.area > 100))
+     println(numbers.exists(n => n > 1))
+     println(strings.exists(s => s.startsWith("b")))
+     println(shapes.exists(s => s.area > 100))
 
     println("map")
-    // println(numbers.map(n => n + 1))
-    // println(strings.map(s => s + "!"))
-    // println(shapes.map(s => s.toString))
+     println(numbers.map(n => n + 1))
+     println(strings.map(s => s + "!"))
+     println(shapes.map(s => s.toString))
 
     println("reduce")
     // println(numbers.reduce(0, (a, b) => a + b))
@@ -105,8 +112,8 @@ object Exercise14GenericList {
     // println(shapes.append(shapes))
 
     println("filter")
-    // println(numbers.filter(n => n > 1))
-    // println(strings.filter(s => s.startsWith("b")))
-    // println(shapes.filter(s => s.area > 50))
+//     println(numbers.filter(n => n > 1))
+//     println(strings.filter(s => s.startsWith("b")))
+//     println(shapes.filter(s => s.area > 50))
   }
 }

@@ -9,35 +9,43 @@ object Exercise6Films {
   // You DO NOT need to reference previous answers in later ones.
 
   def nameOfFilm(film: Film): String = {
-    ???
+    film.name
   }
 
   def filmsByDirector(director: Director): List[Film] = {
-    ???
+    director.films
   }
 
   def directorsWithBackCatalogOfSize(directors: List[Director], numberOfFilms: Int): List[Director] = {
-    ???
+    directors.filter(_.films.length >= numberOfFilms)
   }
 
   def directorsBornBefore(directors: List[Director], year: Int): List[Director] = {
-    ???
+    directors.filter(_.yearOfBirth < year)
   }
 
   def directorsBornBeforeWithBackCatalogOfSize(directors: List[Director], year: Int, numberOfFilms: Int): List[Director] = {
-    ???
+//    val directorsWithBackCatalog: List[Director] = directorsWithBackCatalogOfSize(directors, numberOfFilms)
+//    val directorsBornBeforeYear: List[Director] = directorsBornBefore(directors, year)
+//
+//    directors.filter(
+//      directors =>
+//      directorsWithBackCatalog.contains(directors) && directorsBornBeforeYear.contains(directors)
+//    )
+
+    directorsBornBefore(directorsBornBefore(directors, year), numberOfFilms)
   }
 
   def namesOfFilms(films: List[Film]): List[String] = {
-    ???
+    films.map(_.name)
   }
 
   def namesOfFilmsByDirector(director: Director): List[String] = {
-    ???
+    namesOfFilms(director.films)
   }
 
   def namesOfFilmsByDirectorScoringAtLeast(director: Director, imdbRating: Double): List[String] = {
-    ???
+    director.films.filter(_.imdbRating >= imdbRating).map(_.name)
   }
 
   def main(args: Array[String]): Unit = {
