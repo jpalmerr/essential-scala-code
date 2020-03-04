@@ -7,12 +7,13 @@ import scala.concurrent.duration._
 case class Stats(hostname: String, uptime: Long, requests: Int)
 
 object Stats {
-  def forHost(hostname: String): Future[Stats] = {
-    ???
-  }
 
-  def forHosts(hostnames: List[String]): Future[List[Stats]] = {
-    ???
+  def fetchTotalUptime(host1: String, host2: String, host3: String): Future[Long] = {
+    for {
+      firstHost  <- fetchUptime(host1)
+      secondHost <- fetchUptime(host2)
+      thirdHost  <- fetchUptime(host3)
+    } yield firstHost + secondHost + thirdHost
   }
 
   // Use this helper method in your answers:
@@ -39,11 +40,11 @@ object Exercise24bUptime {
 
   def main(args: Array[String]): Unit = {
     println("Stats.forHost")
-    // println(Await.result(Stats.forHost(host1), 1.second))
-    // println(Await.result(Stats.forHost(host2), 1.second))
-    // println(Await.result(Stats.forHost(host3), 1.second))
+//     println(Await.result(Stats.forHost(host1), 1.second))
+//     println(Await.result(Stats.forHost(host2), 1.second))
+//     println(Await.result(Stats.forHost(host3), 1.second))
 
     println("Stats.forHosts")
-    // println(Await.result(Stats.forHosts(List(host1, host2, host3)), 1.second))
+     println(Await.result(Stats.fetchTotalUptime(host1, host2, host3), 1.second))
   }
 }
