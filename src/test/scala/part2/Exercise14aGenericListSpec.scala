@@ -35,10 +35,10 @@ class Exercise14aGenericListSpec extends AnyFlatSpec with Matchers {
   }
 
   "reduce" should "accumulate from left to right" in {
-// //   pending
-//     numbers1.reduce(0, (a, b) => a + b) should equal(6)
-//     numbers2.reduce(0, (a, b) => a + b) should equal(15)
-//     strings1.reduce("", (a, b) => a + b) should equal("foobarbaz")
+  pending
+     numbers1.reduce(0, (a, b) => a + b) should equal(6)
+     numbers2.reduce(0, (a, b) => a + b) should equal(15)
+     strings1.reduce("", (a, b) => a + b) should equal("foobarbaz")
   }
 
   "append" should "work as expected" in {
@@ -50,13 +50,13 @@ class Exercise14aGenericListSpec extends AnyFlatSpec with Matchers {
   }
 
   "filter" should "work as expected" in {
-    pending
-    // numbers1.filter(n => n > 0) should equal(numbers1)
-    // numbers1.filter(n => n < 0) should equal(nil)
-    // numbers1.filter(n => n > 2) should equal(pair(3, nil))
-    // numbers2.filter(n => n > 0) should equal(numbers2)
-    // numbers2.filter(n => n < 0) should equal(nil)
-    // numbers2.filter(n => n > 4) should equal(pair(5, pair(6, nil)))
-    // strings1.filter(s => s.contains('b')) should equal(pair("bar", pair("baz", nil)))
+//    pending
+     numbers1.filter(n => n > 0) should equal(numbers1)
+     numbers1.filter(n => n < 0) should equal(nil)
+     numbers1.filter(n => n > 2) should equal(pair(3, nil))
+     numbers2.filter(n => n > 0) should equal(numbers2)
+     numbers2.filter(n => n < 0) should equal(nil)
+     numbers2.filter(n => n > 4) should equal(pair(5, pair(6, nil)))
+     strings1.filter(s => s.contains('b')) should equal(pair("bar", pair("baz", nil)))
   }
 }

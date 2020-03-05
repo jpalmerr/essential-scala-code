@@ -84,9 +84,9 @@ object Exercise23HarderProblems {
      println(earliestFilmByOldestDirector(directors))
 
     println("filmsByAllDirectorsSortedByDirectorNameAndImdb asc")
-     filmsByAllDirectorsSortedByDirectorNameAndImdb(directors, true).foreach(println)
+     filmsByAllDirectorsSortedByDirectorNameAndImdb(directors, asc = true).foreach(println)
 
     println("filmsByAllDirectorsSortedByDirectorNameAndImdb asc")
-     filmsByAllDirectorsSortedByDirectorNameAndImdb(directors, false).foreach(println)
+     filmsByAllDirectorsSortedByDirectorNameAndImdb(directors, asc = false).foreach(println)
   }
 }

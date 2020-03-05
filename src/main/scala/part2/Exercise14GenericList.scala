@@ -19,21 +19,36 @@ sealed trait MyList[A] {
   def map[B](func: A => B): MyList[B] = {
     this match {
       case MyPair(head, tail) =>
-      val newHead: B = func(head)
-      val newTail: MyList[B] = tail.map(func)
+        val newHead: B = func(head)
+        val newTail: MyList[B] = tail.map(func)
         MyPair(newHead, newTail)
 
       case MyNil() => MyNil()
     }
   }
 
-//  def filter[A](predicate: A => Boolean): MyList[A] = {
+  def reduce(accum: A , func: (A, A) => A): A = {
 //    this match {
-//      case MyPair(head, tail) =>
-//      if (predicate(head)) MyPair(head, tail.filter(predicate)) else tail.filter(predicate)
-//      case MyNil() => MyNil()
+//      case MyPair(head, tail) => tail.reduce(head, func)
+//      case MyNil() => accum
 //    }
-//  }
+    ???
+  }
+
+  /*
+    def total: Int = this match {
+    case IntNil() => 0
+    case IntPair(head, tail) => head + tail.total
+  }
+   */
+
+  def filter(predicate: A => Boolean): MyList[A] = {
+        this match {
+          case MyPair(head, tail) =>
+          if (predicate(head)) MyPair(head, tail.filter(predicate)) else tail.filter(predicate)
+          case MyNil() => MyNil()
+        }
+      }
 }
 
 case class MyPair[A](head: A, tail: MyList[A] ) extends MyList[A]
