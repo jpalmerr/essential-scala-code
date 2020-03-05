@@ -32,6 +32,8 @@ object EncodeStuff {
   }
 }
 
+
+
 object Main extends App {
 
   import JsParser._
@@ -52,7 +54,7 @@ object Main extends App {
   val jsonObject = JsonObject(Map("hello" -> jsonNumber))
   println(stringify(jsonObject))
 
-  val thing = MyThing(100.0, true)
+  val thing = MyThing(100.0, g = true)
   val encodeStuff = EncodeStuff.encodeThing(thing)
   println(encodeStuff)
 

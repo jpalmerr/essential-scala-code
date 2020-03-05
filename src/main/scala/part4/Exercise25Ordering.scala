@@ -12,7 +12,10 @@ object Email {
 final case class Person(name: String, email: Email)
 
 object Person {
-  // Implement orderings for Person here
+  implicit val ordering: Ordering[Person] =
+    // Ordering.fromLessThan[Person](_.name < _.name) by name
+    // Ordering.fromLessThan[Person](_.email.address < _.email.address) // address manual
+    Ordering.by(_.email) // using email ordering
 }
 
 object Exercise25Ordering {
@@ -28,15 +31,17 @@ object Exercise25Ordering {
 
   def main(args: Array[String]): Unit = {
     println("ordering.compare")
-    // println(Email.ordering.compare(email1, email2))
-    // println(Person.ordering.compare(person1, person2))
+     println(Email.ordering.compare(email1, email2))
+      println("people -----------")
+     println(Person.ordering.compare(person1, person2))
 
     println("sorting")
-    // println(emails.sorted)
-    // println(people.sorted)
+     println(emails.sorted)
+    println("people -----------")
+     println(people.sorted)
 
     println("non-standard orders")
-    // println(emails.sorted(Email.ordering.reverse))
-    // println(people.sorted(Person.orderingByEmail))
+     println(emails.sorted(Email.ordering.reverse))
+//     println(people.sorted(Person.orderingByEmail))
   }
 }
