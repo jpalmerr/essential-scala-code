@@ -10,9 +10,8 @@ object Exercise23HarderProblems {
     } yield (d, films.headOption)
   }
 
-  def earliestFilmsByAllDirectorsAsMap(directors: List[Director]): Map[Director, Option[Film]] = {
-    ???
-  }
+  def earliestFilmsByAllDirectorsAsMap(directors: List[Director]): Map[Director, Option[Film]] =
+    directors.map(d => d -> d.films.sortBy(_.yearOfRelease).headOption).toMap
 
   def averageImdbRatingAcrossDirectors(directors: List[Director]): Double = {
 
@@ -68,23 +67,35 @@ object Exercise23HarderProblems {
          println(key + " -> " + value)
      }
 
+    println("----------------------------------------------------")
+
     println("earliestFilmsByAllDirectorsAsMap")
-    // earliestFilmsByAllDirectorsAsMap(directors).foreach {
-    //   case (key, value) =>
-    //     println(key + " -> " + value)
-    // }
+     earliestFilmsByAllDirectorsAsMap(directors).foreach {
+       case (key, value) =>
+         println(key + " -> " + value)
+     }
+
+    println("----------------------------------------------------")
 
     println("averageImdbRatingAcrossDirectors")
      println(averageImdbRatingAcrossDirectors(directors))
 
+    println("----------------------------------------------------")
+
     println("earliestFilmByAnyDirector")
      println(earliestFilmByAnyDirector(directors))
+
+    println("----------------------------------------------------")
 
     println("earliestFilmByOldestDirector")
      println(earliestFilmByOldestDirector(directors))
 
+    println("----------------------------------------------------")
+
     println("filmsByAllDirectorsSortedByDirectorNameAndImdb asc")
      filmsByAllDirectorsSortedByDirectorNameAndImdb(directors, asc = true).foreach(println)
+
+    println("----------------------------------------------------")
 
     println("filmsByAllDirectorsSortedByDirectorNameAndImdb asc")
      filmsByAllDirectorsSortedByDirectorNameAndImdb(directors, asc = false).foreach(println)
